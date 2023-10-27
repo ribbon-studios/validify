@@ -1,4 +1,5 @@
 import { Validator } from '..';
+import { isNullOrUndefined } from '../utils/is-defined';
 import { isNotEqualTo } from './index';
 
 /**
@@ -14,6 +15,8 @@ export function coerceNumber(validator: Validator.Fn<number>): Validator.Fn<stri
 
 export function isDecimals(decimals: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value.toString().length > value.toFixed(decimals).length) return `exceeds decimal count of "${decimals}"`;
   };
 }
@@ -26,6 +29,8 @@ export function isDecimals(decimals: number): Validator.Fn<number> {
  */
 export function isBetweenInclusive(min: number, max: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     return isGreaterThanOrEqualTo(min)(value) ?? isLessThanOrEqualTo(max)(value);
   };
 }
@@ -38,6 +43,8 @@ export function isBetweenInclusive(min: number, max: number): Validator.Fn<numbe
  */
 export function isBetween(min: number, max: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     return isGreaterThan(min)(value) ?? isLessThan(max)(value);
   };
 }
@@ -49,6 +56,8 @@ export function isBetween(min: number, max: number): Validator.Fn<number> {
  */
 export function isGreaterThanOrEqualTo(min: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value < min) return `is less than "${min}"`;
   };
 }
@@ -60,6 +69,8 @@ export function isGreaterThanOrEqualTo(min: number): Validator.Fn<number> {
  */
 export function isGreaterThan(min: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     return isNotEqualTo(min)(value) ?? isGreaterThanOrEqualTo(min)(value);
   };
 }
@@ -71,6 +82,8 @@ export function isGreaterThan(min: number): Validator.Fn<number> {
  */
 export function isLessThanOrEqualTo(max: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value > max) return `is greater than "${max}"`;
   };
 }
@@ -82,6 +95,8 @@ export function isLessThanOrEqualTo(max: number): Validator.Fn<number> {
  */
 export function isLessThan(max: number): Validator.Fn<number> {
   return (value: number): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     return isNotEqualTo(max)(value) ?? isLessThanOrEqualTo(max)(value);
   };
 }

@@ -1,6 +1,16 @@
 import { isAny, isDefined, isEqualTo, isLength, isNotEqualTo, isNotLength, isWithinLength } from '..';
 
 describe('Basic Validators', () => {
+  describe('fn(isDefined)', () => {
+    it('should return nothing if the value is defined', () => {
+      expect(isDefined('hello')).toEqual(undefined);
+    });
+
+    it.each([undefined, null])('should return a reason if the value is %s', (value) => {
+      expect(isDefined(value)).toEqual('is not defined');
+    });
+  });
+
   describe('fn(isLength)', () => {
     it('should return nothing if the strings length is equal to the expected length', () => {
       expect(isLength(5)('hello')).toEqual(undefined);
@@ -12,6 +22,10 @@ describe('Basic Validators', () => {
 
     it('should return a reason if the values length is not equal to the expected length', () => {
       expect(isLength(0)('hello')).toEqual('has length not equal to "0"');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isLength(0)(value)).toEqual(undefined);
     });
   });
 
@@ -27,6 +41,10 @@ describe('Basic Validators', () => {
     it('should return a reason if the values length is equal to the expected length', () => {
       expect(isNotLength(5)('hello')).toEqual('has length equal to "5"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isNotLength(5)(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isWithinLength)', () => {
@@ -41,15 +59,9 @@ describe('Basic Validators', () => {
     it('should return a reason if the values length is greater than the expected length', () => {
       expect(isWithinLength(4)('hello')).toEqual('exceeds max length of "4"');
     });
-  });
 
-  describe('fn(isDefined)', () => {
-    it('should return nothing if the value is defined', () => {
-      expect(isDefined('hello')).toEqual(undefined);
-    });
-
-    it.each([undefined, null])('should return a reason if the value is %s', (value) => {
-      expect(isDefined(value)).toEqual('is not defined');
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isWithinLength(4)(value)).toEqual(undefined);
     });
   });
 
@@ -61,6 +73,10 @@ describe('Basic Validators', () => {
     it('should return a reason if the values are not equivalent', () => {
       expect(isEqualTo('hello')('hallo')).toEqual('is not equal to "hello"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isEqualTo('hello')(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isNotEqualTo)', () => {
@@ -71,6 +87,10 @@ describe('Basic Validators', () => {
     it('should return a reason if the values are not equivalent', () => {
       expect(isNotEqualTo('hello')('hello')).toEqual('is equal to "hello"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isNotEqualTo('hello')(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isAny)', () => {
@@ -80,6 +100,10 @@ describe('Basic Validators', () => {
 
     it('should return a reason if the values are not equivalent', () => {
       expect(isAny('hello')('hallo')).toEqual('is not equal to "hello"');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isAny('hello')(value)).toEqual(undefined);
     });
   });
 });

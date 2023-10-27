@@ -32,6 +32,10 @@ describe('String Validators', () => {
     it('should return a reason if the number of decimals is greater than the expected count', () => {
       expect(isDecimals(2)(10.123)).toEqual('exceeds decimal count of "2"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isDecimals(5)(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isBetween)', () => {
@@ -53,6 +57,10 @@ describe('String Validators', () => {
 
     it('should return a reason if the number is less than the minimum', () => {
       expect(isBetween(0, 5)(6)).toEqual('is greater than "5"');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isBetween(0, 5)(value)).toEqual(undefined);
     });
   });
 
@@ -76,6 +84,10 @@ describe('String Validators', () => {
     it('should return a reason if the number is less than the minimum', () => {
       expect(isBetweenInclusive(0, 5)(6)).toEqual('is greater than "5"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isBetweenInclusive(0, 5)(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isGreaterThan)', () => {
@@ -89,6 +101,10 @@ describe('String Validators', () => {
 
     it('should return a reason if the number is less than the minimum', () => {
       expect(isGreaterThan(0)(-1)).toEqual('is less than "0"');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isGreaterThan(0)(value)).toEqual(undefined);
     });
   });
 
@@ -104,6 +120,10 @@ describe('String Validators', () => {
     it('should return a reason if the number is greater than the maximum', () => {
       expect(isLessThan(0)(1)).toEqual('is greater than "0"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isLessThan(0)(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isGreaterThanOrEqualTo)', () => {
@@ -118,6 +138,10 @@ describe('String Validators', () => {
     it('should return a reason if the number is less than the minimum', () => {
       expect(isGreaterThanOrEqualTo(0)(-1)).toEqual('is less than "0"');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isGreaterThanOrEqualTo(0)(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isLessThanOrEqualTo)', () => {
@@ -131,6 +155,10 @@ describe('String Validators', () => {
 
     it('should return a reason if the number is greater than the maximum', () => {
       expect(isLessThanOrEqualTo(0)(1)).toEqual('is greater than "0"');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isLessThanOrEqualTo(0)(value)).toEqual(undefined);
     });
   });
 });

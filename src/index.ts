@@ -115,3 +115,4 @@ export class ValidationError extends Error {
 }
 
 export * from './validators';
+export * from './utils';
