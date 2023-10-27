@@ -12,6 +12,12 @@ export function coerceNumber(validator: Validator.Fn<number>): Validator.Fn<stri
   };
 }
 
+export function isDecimals(decimals: number): Validator.Fn<number> {
+  return (value: number): string | void => {
+    if (value.toString().length > value.toFixed(decimals).length) return `exceeds decimal count of "${decimals}"`;
+  };
+}
+
 /**
  * Passes if the value is between or equal to the range values.
  * @param min The minimum range value

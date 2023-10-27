@@ -1,4 +1,4 @@
-import {isAlpha, isAlphaNumeric, isNumeric} from '../string';
+import { isAlpha, isAlphaNumeric, isNumeric, isPostalCode } from '../string';
 
 describe('String Validators', () => {
   describe('fn(isAlpha)', () => {
@@ -36,6 +36,20 @@ describe('String Validators', () => {
 
     it('should return a reason if the value contains symbols', () => {
       expect(isAlphaNumeric('!@#%$')).toEqual('includes non alpha-numeric characters');
+    });
+  });
+
+  describe.only('fn(isPostalCode)', () => {
+    it('should return nothing if the value is a valid us postal code', () => {
+      expect(isPostalCode('US')('32937')).toEqual(undefined);
+    });
+
+    it('should return nothing if the value is a valid canada postal code', () => {
+      expect(isPostalCode('CA')('E4X 0V3')).toEqual(undefined);
+    });
+
+    it('should return nothing if the value is a valid canada postal code', () => {
+      expect(isPostalCode('US')('E4X 0V3')).toEqual('is an invalid postal code for "US"');
     });
   });
 });
