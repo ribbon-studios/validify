@@ -1,5 +1,6 @@
 {
   "name": "@rain-cafe/validify",
+  "description": "An incredibly simple object validation library",
   "version": "1.0.0",
   "packageManager": "yarn@3.6.4",
   "source": "src/index.ts",
