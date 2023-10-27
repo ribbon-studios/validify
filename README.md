@@ -30,11 +30,11 @@ type MyCustomType = {
     first: string;
     last: string;
   }>;
-}
+};
 
 const validator = new Validator<MyCustomType>({
   name: [isDefined, isAlpha],
-  
+
   i18n: {
     en: {
       hello: [isDefined, isAlphaNumeric],
@@ -47,7 +47,7 @@ const validator = new Validator<MyCustomType>({
   },
 });
 
-validator.check({
+const myObject = {
   name: 'App',
   version: '1.0.0',
 
@@ -57,11 +57,18 @@ validator.check({
     },
   },
 
-  users: [{
-    first: 'Cecilia',
-    last: 'Sanare',
-  }],
-});
+  users: [
+    {
+      first: 'Cecilia',
+      last: 'Sanare',
+    },
+  ],
+};
+
+const errors = validator.check(myObject); // returns a list of all the validator failure reasons
+validator.validate(myObject); // throws an error containing all of the validator failure reasons
+validator.isValid(myObject); // returns true if the object passes all of the validators
+validator.isInvalid(myObject); // returns true if the object fails any of the validators
 ```
 
 [npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/validify.svg
