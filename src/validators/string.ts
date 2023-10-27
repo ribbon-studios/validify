@@ -7,7 +7,7 @@ import { isNullOrUndefined } from '../utils/is-defined';
  * @param value the string to validate
  * @returns why the validator failed
  */
-export function isAlpha(value: string): string | void {
+export function isAlpha(value: string | null | undefined): string | void {
   if (isNullOrUndefined(value)) return;
 
   if (!/[A-z ]+/.test(value)) return 'includes non alpha characters';
@@ -18,7 +18,7 @@ export function isAlpha(value: string): string | void {
  * @param value the string to validate
  * @returns why the validator failed
  */
-export function isAlphaNumeric(value: string): string | void {
+export function isAlphaNumeric(value: string | null | undefined): string | void {
   if (isNullOrUndefined(value)) return;
 
   if (!/[A-z \d]+/.test(value)) return 'includes non alpha-numeric characters';
@@ -29,14 +29,14 @@ export function isAlphaNumeric(value: string): string | void {
  * @param value the string to validate
  * @returns why the validator failed
  */
-export function isNumeric(value: string): string | void {
+export function isNumeric(value: string | null | undefined): string | void {
   if (isNullOrUndefined(value)) return;
 
   if (!/\d+/.test(value)) return 'includes non numeric characters';
 }
 
-export function isPostalCode(countryCode: string): Validator.Fn<string> {
-  return (value: string): string | void => {
+export function isPostalCode(countryCode: string): Validator.Fn<string | null | undefined> {
+  return (value: string | null | undefined): string | void => {
     if (isNullOrUndefined(value)) return;
 
     if (validate(countryCode, value) !== true) return `is an invalid postal code for "${countryCode}"`;
