@@ -3,7 +3,7 @@
  * @param thing the string to validate
  * @returns why the validator failed
  */
-export function isAlpha(thing: string): string {
+export function isAlpha(thing: string): string | void {
   if (!/[A-z ]+/.test(thing)) return 'includes non alpha characters';
 }
 
@@ -12,7 +12,7 @@ export function isAlpha(thing: string): string {
  * @param thing the string to validate
  * @returns why the validator failed
  */
-export function isAlphaNumeric(thing: string): string {
+export function isAlphaNumeric(thing: string): string | void {
   if (!/[A-z \d]+/.test(thing)) return 'includes non alpha-numeric characters';
 }
 
@@ -21,6 +21,6 @@ export function isAlphaNumeric(thing: string): string {
  * @param thing the string to validate
  * @returns why the validator failed
  */
-export function isNumeric(thing: string): string {
+export function isNumeric(thing: string): string | void {
   if (!/\d+/.test(thing)) return 'includes non numeric characters';
 }
