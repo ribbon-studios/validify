@@ -1,3 +1,4 @@
+import { Countries } from '../../utils/postal-codes';
 import { isAlpha, isAlphaNumeric, isNumeric, isPostalCode } from '../string';
 
 describe('validators(string)', () => {
@@ -53,19 +54,19 @@ describe('validators(string)', () => {
 
   describe('fn(isPostalCode)', () => {
     it('should return nothing if the value is a valid us postal code', () => {
-      expect(isPostalCode('US')('32937')).toEqual(undefined);
+      expect(isPostalCode(Countries.US)('32937')).toEqual(undefined);
     });
 
     it('should return nothing if the value is a valid canada postal code', () => {
-      expect(isPostalCode('CA')('E4X 0V3')).toEqual(undefined);
+      expect(isPostalCode(Countries.CA)('E4X 0V3')).toEqual(undefined);
     });
 
     it('should return nothing if the value is a valid canada postal code', () => {
-      expect(isPostalCode('US')('E4X 0V3')).toEqual('is an invalid postal code for "US"');
+      expect(isPostalCode(Countries.US)('E4X 0V3')).toEqual('is an invalid postal code for "US"');
     });
 
     it.each([undefined, null])('should return nothing if the value is %s', (value) => {
-      expect(isPostalCode('US')(value)).toEqual(undefined);
+      expect(isPostalCode(Countries.US)(value)).toEqual(undefined);
     });
   });
 });

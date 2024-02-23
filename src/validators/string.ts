@@ -1,6 +1,6 @@
-import { validate } from 'postal-codes-js';
 import { Validator } from '..';
 import { isNullOrUndefined } from '../utils/is-defined';
+import { Countries, isInvalidPostalCode } from '../utils/postal-codes';
 
 /**
  * Passes if string only contains alphabetical characters.
@@ -35,10 +35,10 @@ export function isNumeric(value: string | null | undefined): string | void {
   if (!/\d+/.test(value)) return 'includes non numeric characters';
 }
 
-export function isPostalCode(countryCode: string): Validator.Fn<string | null | undefined> {
+export function isPostalCode(countryCode: Countries): Validator.Fn<string | null | undefined> {
   return (value: string | null | undefined): string | void => {
     if (isNullOrUndefined(value)) return;
 
-    if (validate(countryCode, value) !== true) return `is an invalid postal code for "${countryCode}"`;
+    if (isInvalidPostalCode(countryCode, value)) return `is an invalid postal code for "${countryCode}"`;
   };
 }

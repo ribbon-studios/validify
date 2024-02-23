@@ -1,4 +1,5 @@
 import { isPostalCode } from '..';
+import { Countries } from '../../utils/postal-codes';
 import { coerceNumber, or } from '../helpers';
 import { isGreaterThan } from '../number';
 
@@ -15,11 +16,11 @@ describe('validators(helpers)', () => {
 
   describe('fn(or)', () => {
     it('should return nothing if one of the validators passes', () => {
-      expect(or(isPostalCode('US'), isPostalCode('CA'))('E4X 0V3')).toEqual(undefined);
+      expect(or(isPostalCode(Countries.US), isPostalCode(Countries.CA))('E4X 0V3')).toEqual(undefined);
     });
 
     it('should return all of the reasons', () => {
-      expect(or(isPostalCode('US'), isPostalCode('CA'))('1')).toEqual(
+      expect(or(isPostalCode(Countries.US), isPostalCode(Countries.CA))('1')).toEqual(
         'is an invalid postal code for "US" and is an invalid postal code for "CA"'
       );
     });

@@ -20,8 +20,7 @@
     "build": "microbundle"
   },
   "dependencies": {
-    "chalk": "^3",
-    "postal-codes-js": "^2.5.2"
+    "chalk": "^3"
   },
   "devDependencies": {
     "@jest/types": "^29.6.1",
