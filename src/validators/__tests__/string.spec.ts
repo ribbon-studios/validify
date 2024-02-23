@@ -1,6 +1,6 @@
 import { isAlpha, isAlphaNumeric, isNumeric, isPostalCode } from '../string';
 
-describe('String Validators', () => {
+describe('validators(string)', () => {
   describe('fn(isAlpha)', () => {
     it('should return nothing if the value contains only alphabetical characters', () => {
       expect(isAlpha('hello')).toEqual(undefined);

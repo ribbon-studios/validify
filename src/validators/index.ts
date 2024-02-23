@@ -90,3 +90,4 @@ export function isAny<T>(...expectedValues: T[]): Validator.Fn<T> {
 
 export * from './number';
 export * from './string';
+export * from './helpers';

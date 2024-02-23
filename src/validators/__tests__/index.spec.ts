@@ -1,6 +1,6 @@
 import { isAny, isDefined, isEqualTo, isLength, isNotEqualTo, isNotLength, isWithinLength } from '..';
 
-describe('Basic Validators', () => {
+describe('validators(basic)', () => {
   describe('fn(isDefined)', () => {
     it('should return nothing if the value is defined', () => {
       expect(isDefined('hello')).toEqual(undefined);

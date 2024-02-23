@@ -1,5 +1,4 @@
 import {
-  coerceNumber,
   isBetween,
   isBetweenInclusive,
   isDecimals,
@@ -9,17 +8,7 @@ import {
   isLessThanOrEqualTo,
 } from '../number';
 
-describe('String Validators', () => {
-  describe('fn(coerceNumber)', () => {
-    it('should support coercing strings to numbers', () => {
-      expect(coerceNumber(isGreaterThan(0))('1')).toEqual(undefined);
-    });
-
-    it('should support passing through numbers', () => {
-      expect(coerceNumber(isGreaterThan(0))(1)).toEqual(undefined);
-    });
-  });
-
+describe('validators(number)', () => {
   describe('fn(isDecimals)', () => {
     it('should return nothing if the number of decimals is equal to the expected count', () => {
       expect(isDecimals(2)(10.12)).toEqual(undefined);

@@ -2,17 +2,6 @@ import { Validator } from '..';
 import { isNullOrUndefined } from '../utils/is-defined';
 import { isNotEqualTo } from './index';
 
-/**
- * A helper validator to coerce strings to numbers before running a subsequent validator
- * @param validator the number validator to execute
- * @returns the reason for the number validator failing
- */
-export function coerceNumber(validator: Validator.Fn<number>): Validator.Fn<string | number | null | undefined> {
-  return (value: string | number | null | undefined): string | void => {
-    return validator(typeof value === 'string' ? Number(value) : value);
-  };
-}
-
 export function isDecimals(decimals: number): Validator.Fn<number | null | undefined> {
   return (value: number | null | undefined): string | void => {
     if (isNullOrUndefined(value)) return;
