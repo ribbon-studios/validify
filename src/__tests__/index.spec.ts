@@ -227,5 +227,13 @@ describe('class(ValidationError)', () => {
 
       expect(error.toString()).toEqual(errors.join('\n'));
     });
+
+    it('should support being thrown', () => {
+      const errors = ['hello', 'world'];
+
+      expect(() => {
+        throw new ValidationError(errors);
+      }).toThrowError('hello\nworld');
+    });
   });
 });

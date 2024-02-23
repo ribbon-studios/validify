@@ -105,7 +105,7 @@ export class ValidationError extends Error {
   errors: string[];
 
   constructor(errors: string[]) {
-    super();
+    super(errors.join('\n'));
     this.errors = errors;
   }
 
