@@ -2,6 +2,7 @@ import {
   coerceNumber,
   isBetween,
   isBetweenInclusive,
+  isDecimals,
   isGreaterThan,
   isGreaterThanOrEqualTo,
   isLessThan,
@@ -16,6 +17,20 @@ describe('String Validators', () => {
 
     it('should support passing through numbers', () => {
       expect(coerceNumber(isGreaterThan(0))(1)).toEqual(undefined);
+    });
+  });
+
+  describe('fn(isDecimals)', () => {
+    it('should return nothing if the number of decimals is equal to the expected count', () => {
+      expect(isDecimals(2)(10.12)).toEqual(undefined);
+    });
+
+    it('should return nothing if the number of decimals is less than the expected count', () => {
+      expect(isDecimals(2)(10.1)).toEqual(undefined);
+    });
+
+    it('should return a reason if the number of decimals is greater than the expected count', () => {
+      expect(isDecimals(2)(10.123)).toEqual('exceeds decimal count of "2"');
     });
   });
 

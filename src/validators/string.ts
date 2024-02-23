@@ -1,3 +1,6 @@
+import { validate } from 'postal-codes-js';
+import { Validator } from '..';
+
 /**
  * Passes if string only contains alphabetical characters.
  * @param thing the string to validate
@@ -23,4 +26,10 @@ export function isAlphaNumeric(thing: string): string | void {
  */
 export function isNumeric(thing: string): string | void {
   if (!/\d+/.test(thing)) return 'includes non numeric characters';
+}
+
+export function isPostalCode(countryCode: string): Validator.Fn<string> {
+  return (value: string): string | void => {
+    if (validate(countryCode, value) !== true) return `is an invalid postal code for "${countryCode}"`;
+  };
 }
