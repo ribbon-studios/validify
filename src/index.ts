@@ -6,10 +6,12 @@ export class Validator<T extends object> {
 
   check(thing: object): string[] {
     const errors: string[] = [];
-    const stack: Validator.StackItem[] = [{
-      item: thing,
-      config: this.config,
-    }];
+    const stack: Validator.StackItem[] = [
+      {
+        item: thing,
+        config: this.config,
+      },
+    ];
 
     while (stack.length !== 0) {
       const { parentKey, item, config } = stack.shift();
@@ -23,7 +25,6 @@ export class Validator<T extends object> {
           if (configItem.length === 0) continue;
 
           for (const validator of configItem) {
-
             if (Array.isArray(innerValue)) {
               for (let i = 0; i < innerValue.length; i++) {
                 const error = validator(innerValue[i]);
@@ -68,7 +69,7 @@ export class Validator<T extends object> {
 
     if (errors.length === 0) return;
 
-    throw new ValidationError(errors)
+    throw new ValidationError(errors);
   }
 
   isValid(thing: object): thing is T {
@@ -84,14 +85,20 @@ export namespace Validator {
   export type Fn<T> = (value: T) => string;
 
   export type Config<T extends object> = {
-    [key in keyof T]?: T[key] extends Array<object> ? Config<T[key][number]> : T[key] extends Array<any> ? Fn<T[key][number]>[] : T[key] extends object ? Config<T[key]> : Fn<T[key]>[];
+    [key in keyof T]?: T[key] extends Array<object>
+      ? Config<T[key][number]>
+      : T[key] extends Array<any>
+      ? Fn<T[key][number]>[]
+      : T[key] extends object
+      ? Config<T[key]>
+      : Fn<T[key]>[];
   };
 
   export type StackItem = {
     parentKey?: string;
     item: object;
     config: Config<object>;
-  }
+  };
 }
 
 export class ValidationError extends Error {
@@ -106,3 +113,5 @@ export class ValidationError extends Error {
     return this.errors.join('\n');
   }
 }
+
+export * from './validators';

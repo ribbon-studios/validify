@@ -1,4 +1,4 @@
-import {Validator} from '..';
+import { Validator } from '..';
 
 export function isDefined(thing: any): string {
   if ([undefined, null].includes(thing)) return 'is not defined';
@@ -21,3 +21,6 @@ export function isNotEqualTo<T>(expectedValue: T): Validator.Fn<T> {
     if (value === expectedValue) return `is equal to "${expectedValue}"`;
   };
 }
+
+export * from './number';
+export * from './string';
