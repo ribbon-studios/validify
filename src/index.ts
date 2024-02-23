@@ -50,7 +50,7 @@ export class Validator<T extends object> {
                 config: configItem,
               });
             }
-          } else {
+          } else if (innerValue) {
             stack.push({
               parentKey: innerKey,
               item: innerValue,
