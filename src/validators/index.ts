@@ -1,4 +1,14 @@
 import { Validator } from '..';
+import { isNullOrUndefined } from '../utils/is-defined';
+
+/**
+ * Passes if the value is defined.
+ * @param thing the thing to validate
+ * @returns why the validator failed
+ */
+export function isDefined(thing: any): string | void {
+  if (isNullOrUndefined(thing)) return 'is not defined';
+}
 
 /**
  * Passes if the array or string is equal to the length.
@@ -7,6 +17,8 @@ import { Validator } from '..';
  */
 export function isLength(length: number): Validator.Fn<any[] | string> {
   return (value): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value.length !== length) return `has length not equal to "${length}"`;
   };
 }
@@ -18,6 +30,8 @@ export function isLength(length: number): Validator.Fn<any[] | string> {
  */
 export function isNotLength(length: number): Validator.Fn<any[] | string> {
   return (value): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value.length === length) return `has length equal to "${length}"`;
   };
 }
@@ -29,17 +43,10 @@ export function isNotLength(length: number): Validator.Fn<any[] | string> {
  */
 export function isWithinLength(length: number): Validator.Fn<any[] | string> {
   return (value): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value.length > length) return `exceeds max length of "${length}"`;
   };
-}
-
-/**
- * Passes if the value is defined.
- * @param thing the thing to validate
- * @returns why the validator failed
- */
-export function isDefined(thing: any): string | void {
-  if ([undefined, null].includes(thing)) return 'is not defined';
 }
 
 /**
@@ -49,6 +56,8 @@ export function isDefined(thing: any): string | void {
  */
 export function isEqualTo<T>(expectedValue: T): Validator.Fn<T> {
   return (value: T): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value !== expectedValue) return `is not equal to "${expectedValue}"`;
   };
 }
@@ -60,6 +69,8 @@ export function isEqualTo<T>(expectedValue: T): Validator.Fn<T> {
  */
 export function isNotEqualTo<T>(expectedValue: T): Validator.Fn<T> {
   return (value: T): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (value === expectedValue) return `is equal to "${expectedValue}"`;
   };
 }
@@ -71,6 +82,8 @@ export function isNotEqualTo<T>(expectedValue: T): Validator.Fn<T> {
  */
 export function isAny<T>(...expectedValues: T[]): Validator.Fn<T> {
   return (value: T): string | void => {
+    if (isNullOrUndefined(value)) return;
+
     if (!expectedValues.includes(value)) return `is not equal to "${expectedValues.join(', ')}"`;
   };
 }

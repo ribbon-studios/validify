@@ -13,6 +13,10 @@ describe('String Validators', () => {
     it('should return a reason if the value contains symbols', () => {
       expect(isAlpha('!@#%$')).toEqual('includes non alpha characters');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isAlpha(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isNumeric)', () => {
@@ -27,6 +31,10 @@ describe('String Validators', () => {
     it('should return a reason if the value contains symbols', () => {
       expect(isNumeric('!@#%$')).toEqual('includes non numeric characters');
     });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isNumeric(value)).toEqual(undefined);
+    });
   });
 
   describe('fn(isAlphaNumeric)', () => {
@@ -36,6 +44,10 @@ describe('String Validators', () => {
 
     it('should return a reason if the value contains symbols', () => {
       expect(isAlphaNumeric('!@#%$')).toEqual('includes non alpha-numeric characters');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isAlphaNumeric(value)).toEqual(undefined);
     });
   });
 
@@ -50,6 +62,10 @@ describe('String Validators', () => {
 
     it('should return nothing if the value is a valid canada postal code', () => {
       expect(isPostalCode('US')('E4X 0V3')).toEqual('is an invalid postal code for "US"');
+    });
+
+    it.each([undefined, null])('should return nothing if the value is %s', (value) => {
+      expect(isPostalCode('US')(value)).toEqual(undefined);
     });
   });
 });
