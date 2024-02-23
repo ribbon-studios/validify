@@ -1,7 +1,9 @@
 export class Validator<T extends object> {
   private config: Validator.Config<T>;
-  constructor(config: Validator.Config<T>) {
+  private strict: boolean;
+  constructor(config: Validator.Config<T>, strict: boolean = false) {
     this.config = config;
+    this.strict = strict;
   }
 
   check(thing: object): string[] {
@@ -50,7 +52,7 @@ export class Validator<T extends object> {
                 config: configItem,
               });
             }
-          } else if (innerValue) {
+          } else if (this.strict || innerValue) {
             stack.push({
               parentKey: innerKey,
               item: innerValue,

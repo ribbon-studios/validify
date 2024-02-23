@@ -82,6 +82,29 @@ describe('class(Validator)', () => {
       expect(validator.check({})).toEqual([]);
     });
 
+    it('should not ignore validation if a parent object does not exist and strict mode is enabled', () => {
+      type Example = {
+        i18n: {
+          en: {
+            hello: string;
+          };
+        };
+      };
+
+      const validator = new Validator<Example>(
+        {
+          i18n: {
+            en: {
+              hello: [isDefined],
+            },
+          },
+        },
+        true
+      );
+
+      expect(validator.check({})).toEqual(['"i18n.en.hello" is not defined']);
+    });
+
     it('should support ensuring arrays exist', () => {
       type Example = {
         arr: string[];
