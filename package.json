@@ -2,7 +2,6 @@
   "name": "@rain-cafe/validify",
   "description": "An incredibly simple object validation library",
   "version": "1.0.0",
-  "packageManager": "yarn@3.6.4",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -24,8 +23,8 @@
   },
   "devDependencies": {
     "@jest/types": "^29.6.1",
+    "@types/bun": "^1.0.0",
     "@types/jest": "^29.5.3",
-    "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "chance": "^1.1.11",

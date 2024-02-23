@@ -1,5 +1,3 @@
-import { isRegExp } from 'util/types';
-
 export enum Countries {
   AD = 'AD',
   AI = 'AI',
@@ -145,12 +143,13 @@ export function isValidPostalCode(country: Countries, rawPostalCode: string): bo
     return true;
   }
 
-  const details: RegExpDetails = isRegExp(rawDetails)
-    ? {
-        regex: rawDetails,
-        redundantCharacters: ' -',
-      }
-    : rawDetails;
+  const details: RegExpDetails =
+    rawDetails instanceof RegExp
+      ? {
+          regex: rawDetails,
+          redundantCharacters: ' -',
+        }
+      : rawDetails;
 
   const postalCode = details.redundantCharacters
     ? rawPostalCode.trim().replace(new RegExp(`[${details.redundantCharacters}]`, 'g'), '')
