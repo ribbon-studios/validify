@@ -39,7 +39,7 @@ describe('String Validators', () => {
     });
   });
 
-  describe.only('fn(isPostalCode)', () => {
+  describe('fn(isPostalCode)', () => {
     it('should return nothing if the value is a valid us postal code', () => {
       expect(isPostalCode('US')('32937')).toEqual(undefined);
     });
