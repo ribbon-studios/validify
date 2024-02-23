@@ -1,3 +1,5 @@
+**NOTE: Still a WIP and may be breaking changes within the first major version**
+
 ### @rain-cafe/validify
 
 [![NPM Version][npm-version-image]][npm-url]
