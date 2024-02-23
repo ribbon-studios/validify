@@ -14,7 +14,7 @@ export class Validator<T extends object> {
     ];
 
     while (stack.length !== 0) {
-      const { parentKey, item, config } = stack.shift();
+      const { parentKey, item, config } = stack.shift() as Validator.StackItem;
 
       for (const key in config) {
         const configItem = config[key];
@@ -82,7 +82,7 @@ export class Validator<T extends object> {
 }
 
 export namespace Validator {
-  export type Fn<T> = (value: T) => string;
+  export type Fn<T> = (value: T) => string | void;
 
   export type Config<T extends object> = {
     [key in keyof T]?: T[key] extends Array<object>
