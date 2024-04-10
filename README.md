@@ -1,4 +1,4 @@
-### @rain-cafe/validify
+### @ribbon-studios/validify
 
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
@@ -14,7 +14,7 @@ An incredibly simple object validation library
 ### Usage
 
 ```tsx
-import { Validator, isDefined, isAlpha } from '@rain-cafe/validify';
+import { Validator, isDefined, isAlpha } from '@ribbon-studios/validify';
 
 type MyCustomType = {
   name: string;
@@ -71,16 +71,16 @@ validator.isValid(myObject); // returns true if the object passes all of the val
 validator.isInvalid(myObject); // returns true if the object fails any of the validators
 ```
 
-[npm-version-image]: https://img.shields.io/npm/v/@rain-cafe/validify.svg
-[npm-downloads-image]: https://img.shields.io/npm/dm/@rain-cafe/validify.svg
-[npm-url]: https://npmjs.org/package/@rain-cafe/validify
-[github-actions-image]: https://img.shields.io/github/actions/workflow/status/rain-cafe/validify/ci.yml?event=push
-[github-actions-url]: https://github.com/rain-cafe/validify/actions/workflows/ci.yml?query=branch%3Amain
-[coveralls-image]: https://img.shields.io/coveralls/rain-cafe/validify.svg
-[coveralls-url]: https://coveralls.io/github/rain-cafe/validify?branch=main
+[npm-version-image]: https://img.shields.io/npm/v/@ribbon-studios/validify.svg
+[npm-downloads-image]: https://img.shields.io/npm/dm/@ribbon-studios/validify.svg
+[npm-url]: https://npmjs.org/package/@ribbon-studios/validify
+[github-actions-image]: https://img.shields.io/github/actions/workflow/status/ribbon-studios/validify/ci.yml?event=push
+[github-actions-url]: https://github.com/ribbon-studios/validify/actions/workflows/ci.yml?query=branch%3Amain
+[coveralls-image]: https://img.shields.io/coveralls/ribbon-studios/validify.svg
+[coveralls-url]: https://coveralls.io/github/ribbon-studios/validify?branch=main
 [code-style-image]: https://img.shields.io/badge/code%20style-prettier-ff69b4.svg
 [code-style-url]: https://prettier.io
-[maintainability-image]: https://img.shields.io/codeclimate/maintainability/rain-cafe/refreshly
-[maintainability-url]: https://codeclimate.com/github/rain-cafe/refreshly/maintainability
+[maintainability-image]: https://img.shields.io/codeclimate/maintainability/ribbon-studios/refreshly
+[maintainability-url]: https://codeclimate.com/github/ribbon-studios/refreshly/maintainability
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [semantic-release-image]: https://img.shields.io/badge/%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079

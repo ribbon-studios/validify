@@ -1,5 +1,5 @@
 {
-  "name": "@rain-cafe/validify",
+  "name": "@ribbon-studios/validify",
   "description": "An incredibly simple object validation library",
   "version": "1.0.0",
   "source": "src/index.ts",
@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rain-cafe/validify.git"
+    "url": "git+https://github.com/ribbon-studios/validify.git"
   },
   "license": "MIT"
 }
